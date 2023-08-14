@@ -1,0 +1,13 @@
+version: "3.10"
+services:
+  web:
+    image: python:3.10
+    command: sh -c "pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    working_dir: /myblog
+    volumes:
+      - .:/myblog
+    environment:
+        - PYTHONDONTWRITEBYTECODE=1
+        - PYTHONUNBUFFERED=1
